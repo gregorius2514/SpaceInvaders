@@ -18,46 +18,23 @@ class Game:
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     sys.exit(0)
-                else:
-                    return event.key
+
+    def handleSpaceShipMovement(self):
+        keys = self.screen.getPressedKeys()
+
+        if keys[pygame.K_RIGHT]:
+            self.spaceShip.moveToRight()
+        if keys[pygame.K_LEFT]:
+            self.spaceShip.moveToLeft()
+        if keys[pygame.K_UP]:
+            self.spaceShip.moveToUp()
+        if keys[pygame.K_DOWN]:
+            self.spaceShip.moveToDown()
 
     def startGame(self):
-        moveRight = False
-        moveLeft = False
-        moveUp = False
-        moveDown = False
-        stop = True
-
         while True:
-            key = self.handleInput()
-            if key == K_RIGHT:
-                moveRight = True
-                moveLeft = False
-            elif key == K_LEFT:
-                moveLeft = True
-                moveRight = False
-            elif key == K_UP:
-                moveUp = True
-                moveDown = False
-            elif key == K_DOWN:
-                moveDown = True
-                moveUp = False
-            elif key == K_SPACE:
-                stop = not stop
-                moveDown = False
-                moveUp = False
-                moveLeft = False
-                moveRight = False
-
-            if not stop:
-                if moveRight:
-                    self.spaceShip.moveToRight()
-                if moveLeft:
-                    self.spaceShip.moveToLeft()
-                if moveUp:
-                    self.spaceShip.moveToUp()
-                if moveDown:
-                    self.spaceShip.moveToDown()
+            self.handleInput()
+            self.handleSpaceShipMovement()
 
             self.screen.fill((0,0,0))
             desk = self.screen.draw(self.spaceShip.shipPosition.x,

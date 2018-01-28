@@ -16,6 +16,9 @@ class Screen:
     def getInput(self):
         return self.pygame.event.get()
 
+    def getPressedKeys(self):
+        return self.pygame.key.get_pressed()
+
     def fill(self, color):
         self.screen.fill(color)
     
