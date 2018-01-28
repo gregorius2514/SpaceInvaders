@@ -25,8 +25,13 @@ class Screen:
     def fillSurface(self, color, surface):
         self.pygame.display.get_surface().fill(color, surface)
 
-    def draw(self, mouseX, mouseY):
-        return self.pygame.draw.rect(self.screen,(255,255,255),[[mouseX,mouseY],[50, mouseY+10]], 1)
+    def draw(self, positionX, positionY, color=(255,255,255), dimW=20, dimH=20):
+        return self.pygame.draw.rect(self.screen, color, [[positionX,
+            positionY],[dimW, dimH]], 1)
 
     def makeTick(self):
             self.pygame.time.Clock().tick()
+
+    def getMousePosition(self):
+        return self.pygame.mouse.get_pos()
+
